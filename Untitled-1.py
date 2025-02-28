@@ -620,3 +620,339 @@
 #     print("finished")
 
 # asyncio.run(main())
+
+# def divide(a, b):
+#     try:
+#         result = a / b
+#         print(result)
+#     except ZeroDivisionError:
+#         print("Cannot divide by zero")
+#     finally:
+#         print("Execution completed")
+
+# # Example usage
+# divide(10, 2)  # Expected output: 5.0 followed by "Execution completed"
+# divide(10, 0)  # Expected output: "Cannot divide by zero" followed by "Execution completed"
+
+# class NegativeNumberError(Exception):
+#     """Custom exception for negative numbers."""
+#     pass
+
+# def check_positive(number):
+#     """Raises NegativeNumberError if the number is negative."""
+#     if number < 0:
+#         raise NegativeNumberError("Negative numbers are not allowed")
+#     else:
+#         print(f"Valid input: {number}")
+
+# # Example usage
+# try:
+#     check_positive(-5)  # This will raise the custom exception
+# except NegativeNumberError as e:
+#     print(f"Error: {e}")
+
+# try:
+#     check_positive(10)  # This will print "Valid input: 10"
+# except NegativeNumberError as e:
+#     print(f"Error: {e}")
+
+
+# def read_integer_input():
+#     """Continuously prompts the user for an integer input until a valid integer is entered."""
+#     while True:
+#         try:
+#             user_input = int(input("Enter an integer: "))
+#             return user_input  # Return the valid integer
+#         except ValueError:
+#             print("Invalid input. Please enter a valid integer.")
+
+# # Example usage
+# number = read_integer_input()
+# print(f"You entered: {number}")
+
+# import logging
+
+# # Configure basic logging
+# logging.basicConfig(
+#     level=logging.DEBUG,  # Set the logging level to capture all messages
+#     format="%(asctime)s - %(levelname)s - %(message)s"
+# )
+
+# def demo_logging():
+#     """Logs messages at different severity levels."""
+#     logging.debug("This is a DEBUG message")
+#     logging.info("This is an INFO message")
+#     logging.warning("This is a WARNING message")
+#     logging.error("This is an ERROR message")
+#     logging.critical("This is a CRITICAL message")
+
+# # Run the function
+# demo_logging()
+
+# import logging
+
+# # Configure basic logging with level set to WARNING
+# logging.basicConfig(
+#     level=logging.WARNING,  # Only WARNING, ERROR, and CRITICAL messages will be shown
+#     format="%(asctime)s - %(levelname)s - %(message)s",
+#     force=True  # Ensures reconfiguration if logging was set up before
+# )
+
+# def demo_logging():
+#     """Logs messages at different severity levels."""
+#     logging.debug("This is a DEBUG message")      # Will not be shown
+#     logging.info("This is an INFO message")       # Will not be shown
+#     logging.warning("This is a WARNING message")  # Will be shown
+#     logging.error("This is an ERROR message")     # Will be shown
+#     logging.critical("This is a CRITICAL message")# Will be shown
+
+# # Run the function
+# demo_logging()
+
+# import logging
+
+# # Configure logging to log to a file with timestamps
+# logging.basicConfig(
+#     level=logging.WARNING,  # Logs WARNING and above
+#     format="%(asctime)s - %(levelname)s - %(message)s",  # Include timestamp
+#     filename="app.log",  # Log messages to 'app.log'
+#     filemode="w",  # Overwrites the file on each run (use 'a' to append)
+# )
+
+# def demo_logging():
+#     """Logs messages at different severity levels."""
+#     logging.debug("This is a DEBUG message")      # Won't be logged
+#     logging.info("This is an INFO message")       # Won't be logged
+#     logging.warning("This is a WARNING message")  # Will be logged
+#     logging.error("This is an ERROR message")     # Will be logged
+#     logging.critical("This is a CRITICAL message")# Will be logged
+
+# # Run the function
+# demo_logging()
+
+# print("Logs have been written to 'app.log'.")
+
+# import pandas as pd
+
+# # Creating a Series
+# s = pd.Series([1, 2, 3, 4, 5])
+# print(s)
+
+# # Series with custom index
+# s = pd.Series([1, 2, 3, 4, 5], index=['a', 'b', 'c', 'd', 'e'])
+# print(s)
+
+# Creating a DataFrame from dictionary
+# df = pd.DataFrame({
+#     'Name': ['John', 'Alice', 'Bob'],
+#     'Age': [25, 30, 35],
+#     'City': ['New York', 'London', 'Paris']
+# })
+# print(df)
+
+# Reading data
+#df = pd.read_csv(r'C:\Users\anjan.kumar1\Downloads\output.csv')
+#  df = pd.read_excel('data.xlsx')
+#  df = pd.read_json('data.json')
+
+#  Saving data
+# df.to_csv(r'C:\Users\anjan.kumar1\Downloads\output.csv')
+#  df.to_excel('output.xlsx')
+# df.to_json('output.json')
+
+# # View first/last rows
+# df.head()  # First 5 rows
+# df.tail()  # Last 5 rows
+
+# # DataFrame information
+# df.info()  # Data types and missing values
+
+# # Statistical summary
+# df.describe()
+
+# # Dimensions
+# df.shape(rows, columns)
+
+# # Column names
+# df.columns
+
+
+# Select a single column (returns Series)
+# df['Name']
+
+# Select multiple columns (returns DataFrame)
+# df[['Name', 'Age']]
+
+# df["City"] = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", 
+            #   "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"]
+
+# Using loc for label-based indexing
+# df.loc[0, 'Name']  # Single value
+# df.loc[0:2, 'Name':'City']  # Slice of rows and columns
+
+# Using iloc for integer-based indexing
+# df.iloc[0, 0]  # First row, first column
+# df.iloc[0:2, 0:2]  # First two rows, first two columns
+
+# Boolean indexing
+# df[df['Age'] > 30]  # Rows where Age is greater than 30
+
+# Check for missing values
+# df.isna().sum()
+
+# # Remove missing values
+# df_clean = df.dropna()
+
+# # Fill missing values
+# df_filled = df.fillna(0)  # Fill with zero
+# df_filled = df.fillna(method='ffill')  # Forward fill
+
+# # Remove duplicates
+# df_unique = df.drop_duplicates()
+
+# # Rename columns
+# df.rename(columns={'old_name': 'new_name'}, inplace=True)
+
+
+# import pandas as pd
+
+# # Create a sample DataFrame
+# data = {'Col1': [1, 2, 3], 'Col2': [4, 5, 6], 'Col3': [7,8,9]}
+# df = pd.DataFrame(data)
+# print("Original dataframe")
+# print(df)
+
+# # Rename 'Col2' to 'NewColumn'
+# df.rename(columns={'Col2': 'NewColumn'}, inplace=True)
+# print("New dataframe")
+# print(df)
+
+# Adding a new column
+# df.loc[:2, 'Salary'] = [50000, 60000, 70000]  # Updates only rows 0, 1, and 2
+
+
+# Applying functions to columns
+# df['Age_in_months'] = df['Age'].apply(lambda x: x * 12)
+
+# Sorting data
+# df.sort_values(by='Age')  # Ascending by default
+# df.sort_values(by='Age', ascending=False)  # Descending
+
+# import pandas as pd
+
+# df1 = pd.DataFrame({
+#     'Employee_ID': [101, 102, 103, 104, 105],
+#     'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],
+#     'Department': ['HR', 'IT', 'Finance', 'IT', 'Marketing'],
+#     'Salary': [50000, 70000, 65000, 80000, 55000]
+# })
+
+# df2 = pd.DataFrame({
+#     'Employee_ID': [101, 102, 103, 104, 105],
+#     'Joining_Date': ['2021-06-15', '2020-03-20', '2019-07-10', '2018-12-05', '2022-01-12'],
+#     'Performance_Score': [4.5, 4.2, 3.8, 4.9, 3.6]
+# })
+
+
+# Concatenating DataFrames
+# df_combined = pd.concat([df1, df2])
+
+# Joining/Merging DataFrames
+# merged_df = df1.merge(df2, on='Employee_ID')
+# print(merged_df)
+
+# Group by one column
+# df.groupby('City')[['Salary', 'Age']].mean()  # Replace with your numeric columns
+
+
+# # Group by multiple columns
+# df.groupby(['City', 'Age']).mean()
+
+# # Multiple aggregations
+# df.groupby('City').agg({
+#     'Age': 'mean',
+#     'Salary': ['min', 'max', 'sum']
+# })
+
+# df['Gender'] = ['Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female']
+
+
+# Pivot tables
+# pivot_table = df.pivot_table(
+#     values='Salary',
+#     index='City',
+#     columns='Gender',
+#     aggfunc='mean'
+# )
+
+# print(pivot_table)
+
+# # Melt (unpivot) a DataFrame
+# melted_df = df.melt(
+#     id_vars=['ID', 'Name'],
+#     value_vars=['Math', 'Science', 'English'],
+#     var_name='Subject',
+#     value_name='Score'
+# )
+
+# import pandas as pd
+# Example DataFrame with the correct columns
+# data = {
+#     'ID': [1, 2, 3],
+#     'Name': ['Alice', 'Bob', 'Charlie'],
+#     'Math': [80, 90, 75],
+#     'Science': [85, 95, 80],
+#     'English': [70, 80, 85]
+# }
+# df3 = pd.DataFrame(data)
+# print(df3)
+
+# Melt (unpivot) a DataFrame
+# melted_df = df3.melt(
+#     id_vars=['ID', 'Name'],
+#     value_vars=['Math', 'Science', 'English'],
+#     var_name='Subject',
+#     value_name='Score'
+# )
+
+# print(melted_df)
+
+# Create a date range
+# dates = pd.date_range('2023-01-01', periods=5, freq='D')
+# print(dates)
+
+# df3['Date'] = pd.to_datetime(['2023-01-15', '2023-02-20', '2023-03-25'])  # Added this line
+
+# # Convert string column to datetime
+# df['Date'] = pd.to_datetime(df3['Date'])
+
+# print(df)
+
+
+# # Example DataFrame with the correct columns
+# data = {
+#     'ID': [1, 2, 3],
+#     'Name': ['Alice', 'Bob', 'Charlie'],
+#     'Math': [80, 90, 75],
+#     'Science': [85, 95, 80],
+#     'English': [70, 80, 85]
+# }
+# df3 = pd.DataFrame(data)
+
+# df3['Date'] = pd.to_datetime(['2023-01-15', '2023-02-20', '2023-03-25'])
+
+# print("Original DataFrame:")
+# print(df3)
+
+# # Select only numerical columns for the mean calculation
+# numerical_df = df3.select_dtypes(include=['number'])
+# # Remove the ID column since the mean is not relevant for this
+# numerical_df = numerical_df.drop('ID', axis=1)
+
+# print("numerical dataframe:")
+# print(numerical_df)
+
+# # Time series resampling
+# result = df3.set_index('Date').resample('M')[numerical_df.columns].mean()
+# print("\nResampled DataFrame:")
+# print(result)
