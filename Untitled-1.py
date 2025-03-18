@@ -952,7 +952,167 @@
 # print("numerical dataframe:")
 # print(numerical_df)
 
-# # Time series resampling
+#Time series resampling
 # result = df3.set_index('Date').resample('M')[numerical_df.columns].mean()
 # print("\nResampled DataFrame:")
 # print(result)
+
+
+# import pandas as pd
+# import re
+
+# def create_employee_ids(employee_list):
+#     """
+#     Generate unique employee IDs from a list of employees with personal information.
+    
+#     Parameters:
+#     employee_list (list): A list of dictionaries with 'first_name', 'last_name', and 'email' keys
+    
+#     Returns:
+#     list: The original list with added 'employee_id' key for each person
+#     """
+#     # Create a copy of the original data to avoid modifying it directly
+#     people = employee_list.copy()
+    
+#     # Keep track of IDs we've already created to avoid duplicates
+#     existing_ids = set()
+    
+#     for person in people:
+#         # Get the first letter of first name
+#         first_letter = person['first_name'][0].lower()
+        
+#         # Get and clean the last name
+#         cleaned_last_name = person['last_name'].lower()
+#         cleaned_last_name = re.sub(r'[^a-z]', '', cleaned_last_name)  # Remove non-letter characters
+        
+#         # Shorten last name if it's too long
+#         if len(cleaned_last_name) > 10:
+#             cleaned_last_name = cleaned_last_name[:10]
+        
+#         # Create a basic ID by combining first letter and last name
+#         basic_id = f"{first_letter}{cleaned_last_name}"
+        
+#         # Make sure the ID is unique
+#         final_id = basic_id
+#         number_suffix = 1
+        
+#         # If this ID already exists, add a number at the end
+#         while final_id in existing_ids:
+#             final_id = f"{basic_id}{number_suffix}"
+#             number_suffix += 1
+        
+#         # Save the ID to the person's record
+#         person['employee_id'] = final_id
+        
+#         # Add this ID to our list of used IDs
+#         existing_ids.add(final_id)
+    
+#     return people
+
+# # Example showing how to use the function:
+# if __name__ == "__main__":
+#     # Sample data - replace this with your real data
+#     sample_employees = [
+#         {"first_name": "John", "last_name": "Smith", "email": "john.smith@example.com"},
+#         {"first_name": "Jane", "last_name": "Doe", "email": "jane.doe@example.com"},
+#         {"first_name": "James", "last_name": "Smith", "email": "james.smith@example.com"},
+#         # ... add more employees as needed
+#     ]
+    
+#     # Generate IDs for everyone
+#     employees_with_ids = create_employee_ids(sample_employees)
+    
+#     # Show the results in a nice table format
+#     result_table = pd.DataFrame(employees_with_ids)
+#     print(result_table[['first_name', 'last_name', 'email', 'employee_id']])
+    
+    
+# import pandas as pd
+# import re
+# import json
+
+# def create_employee_ids(employee_list):
+#     """
+#     Generate unique employee IDs from a list of employees with personal information.
+    
+#     Parameters:
+#     employee_list (list): A list of dictionaries with 'first_name', 'last_name', and 'email' keys
+    
+#     Returns:
+#     list: The original list with added 'employee_id' key for each person
+#     """
+#     # Create a copy of the original data to avoid modifying it directly
+#     people = employee_list.copy()
+    
+#     # Keep track of IDs we've already created to avoid duplicates
+#     existing_ids = set()
+    
+#     for person in people:
+#         # Get the first letter of first name
+#         first_letter = person['first_name'][0].lower()
+        
+#         # Get and clean the last name
+#         cleaned_last_name = person['last_name'].lower()
+#         cleaned_last_name = re.sub(r'[^a-z]', '', cleaned_last_name)  # Remove non-letter characters
+        
+#         # Shorten last name if it's too long
+#         if len(cleaned_last_name) > 10:
+#             cleaned_last_name = cleaned_last_name[:10]
+        
+#         # Create a basic ID by combining first letter and last name
+#         basic_id = f"{first_letter}{cleaned_last_name}"
+        
+#         # Make sure the ID is unique
+#         final_id = basic_id
+#         number_suffix = 1
+        
+#         # If this ID already exists, add a number at the end
+#         while final_id in existing_ids:
+#             final_id = f"{basic_id}{number_suffix}"
+#             number_suffix += 1
+        
+#         # Save the ID to the person's record
+#         person['employee_id'] = final_id
+        
+#         # Add this ID to our list of used IDs
+#         existing_ids.add(final_id)
+    
+#     return people
+
+# # Example showing how to use the function with a JSON file:
+# if __name__ == "__main__":
+#     # Load data from a JSON file
+#     try:
+#         with open('employees.json', 'r') as file:
+#             employees_data = json.load(file)
+            
+#         # Generate IDs for everyone
+#         employees_with_ids = create_employee_ids(employees_data)
+        
+#         # Save the results back to a new JSON file
+#         with open('employees_with_ids.json', 'w') as output_file:
+#             json.dump(employees_with_ids, output_file, indent=4)
+            
+#         # Also show the results in a nice table format
+#         result_table = pd.DataFrame(employees_with_ids)
+#         print(result_table[['first_name', 'last_name', 'email', 'employee_id']])
+        
+#         print(f"Generated IDs for {len(employees_with_ids)} employees.")
+#         print("Results saved to 'employees_with_ids.json'")
+        
+#     except FileNotFoundError:
+#         print("Error: employees.json file not found.")
+#         print("Please ensure your JSON file is named 'employees.json' or update the filename in the code.")
+        
+#         # Demonstrate with sample data if file not found
+#         print("\nDemonstrating with sample data instead:")
+#         sample_employees = [
+#             {"first_name": "John", "last_name": "Smith", "email": "john.smith@example.com"},
+#             {"first_name": "Jane", "last_name": "Doe", "email": "jane.doe@example.com"},
+#             {"first_name": "James", "last_name": "Smith", "email": "james.smith@example.com"}
+#         ]
+        
+#         employees_with_ids = create_employee_ids(sample_employees)
+#         result_table = pd.DataFrame(employees_with_ids)
+#         print(result_table[['first_name', 'last_name', 'email', 'employee_id']])    
+
