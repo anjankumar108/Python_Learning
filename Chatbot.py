@@ -1,8 +1,18 @@
+import os
+from dotenv import find_dotenv, load_dotenv
+
+dotenv_path = find_dotenv()
+
+load_dotenv(dotenv_path)
+
+API_KEY = os.getenv("GOOGLE_API_KEY")
+        
+
 
 import streamlit as st
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyBWAhYYQ4n89Qgu2N0ae6g-mpDIlbIRiuk")
+genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-pro")
 
 st.title("Gemini Chatbot")
