@@ -1,0 +1,19 @@
+[project]
+name = "poetry-dev"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "anjan.kumar1",email = "royyala.anjankumar@landmarkgroup.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "poetry_dev", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
