@@ -1116,3 +1116,38 @@
 #         result_table = pd.DataFrame(employees_with_ids)
 #         print(result_table[['first_name', 'last_name', 'email', 'employee_id']])    
 
+
+# from pydantic import BaseModel, EmailStr, validator
+# from typing import List
+
+# # Define Address Model
+# class Address(BaseModel):
+#     street: str
+#     city: str
+#     country: str
+
+# # Define User Model
+# class User(BaseModel):
+#     name: str
+#     age: int
+#     email: EmailStr
+#     address: Address
+#     skills: List[str]  # List of skills
+
+#     @validator("age")
+#     def check_age(cls, value):
+#         if value < 18:
+#             raise ValueError("Age must be 18 or older")
+#         return value
+
+# # Create a new user
+# user = User(
+#     name="John Doe",
+#     age=25,
+#     email="johndoe@example.com",
+#     address={"street": "456 Oak St", "city": "San Francisco", "country": "USA"},
+#     skills=["Python", "Django", "Pydantic"]
+# )
+
+# # Convert to JSON
+# print(user.model_dump_json(indent=4))

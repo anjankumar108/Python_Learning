@@ -1,4 +1,3 @@
-
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import HumanMessage
@@ -8,8 +7,10 @@ from dotenv import find_dotenv, load_dotenv
 from langchain_core.runnables import RunnableLambda
 from langchain_core.runnables import RunnableParallel
 from langchain_core.runnables import RunnableBranch
-from langchain_core.pydantic_v1 import BaseModel
-
+from pydantic import BaseModel
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 
 dotenv_path = find_dotenv()
 
@@ -19,6 +20,11 @@ API_KEY = os.getenv("GOOGLE_API_KEY")
         
 # Set API Key
 os.environ["GOOGLE_API_KEY"] = API_KEY
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY environment variable not set")
+os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 # Initialize LLM
 llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
@@ -137,3 +143,37 @@ llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 # bug_classification_chain = RunnableLambda(classify_bug)
 # response = bug_classification_chain.invoke(BugInput(description="Application crashes on clicking submit button"))
 # print(response)  # "Critical"
+
+# Uncomment and move text processing code up
+# Create a text splitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+
+# Load and split documents
+with open(r"C:\Users\anjan.kumar1\Downloads\test.txt", "r") as f:
+    text = f.read()
+
+# Split text into chunks
+document_chunks = text_splitter.split_text(text)
+
+# Vector store creation
+try:
+    # Initialize embedding model with API key from environment
+    embeddings = OpenAIEmbeddings()  # It will automatically use OPENAI_API_KEY from environment
+
+    # Create vector store from documents
+    db = Chroma.from_texts(
+        texts=document_chunks,
+        embedding=embeddings,
+        persist_directory="./chroma_db"
+    )
+
+    # Persist to disk
+    db.persist()
+    print("Vector store created and persisted successfully")
+    
+except Exception as e:
+    print(f"Error creating vector store: {str(e)}")
+    print(f"Current OPENAI_API_KEY value: {os.getenv('OPENAI_API_KEY')[:5]}...")  # Print first 5 chars for debugging
