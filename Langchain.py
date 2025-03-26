@@ -143,37 +143,3 @@ llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 # bug_classification_chain = RunnableLambda(classify_bug)
 # response = bug_classification_chain.invoke(BugInput(description="Application crashes on clicking submit button"))
 # print(response)  # "Critical"
-
-# Uncomment and move text processing code up
-# Create a text splitter
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200
-)
-
-# Load and split documents
-with open(r"C:\Users\anjan.kumar1\Downloads\test.txt", "r") as f:
-    text = f.read()
-
-# Split text into chunks
-document_chunks = text_splitter.split_text(text)
-
-# Vector store creation
-try:
-    # Initialize embedding model with API key from environment
-    embeddings = OpenAIEmbeddings()  # It will automatically use OPENAI_API_KEY from environment
-
-    # Create vector store from documents
-    db = Chroma.from_texts(
-        texts=document_chunks,
-        embedding=embeddings,
-        persist_directory="./chroma_db"
-    )
-
-    # Persist to disk
-    db.persist()
-    print("Vector store created and persisted successfully")
-    
-except Exception as e:
-    print(f"Error creating vector store: {str(e)}")
-    print(f"Current OPENAI_API_KEY value: {os.getenv('OPENAI_API_KEY')[:5]}...")  # Print first 5 chars for debugging
